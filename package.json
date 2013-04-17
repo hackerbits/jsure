@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "lemonad": "*",
+    "mocha": "*",
+    "underscore": "*"
+  },
+  "name": "jsure",
+  "scripts": {
+    "test": "mocha --ui tdd"
+  },
+  "version": "0.1.0-SNAPSHOT"
+}
