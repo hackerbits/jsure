@@ -26,7 +26,7 @@ var falsehood = function (fun /* , without */) {
                         /(?:)/,
                         ""],
                        function (t) {
-                         return !_.any(_.map(without, function (fun) { return fun(t);}));
+                         return !_.any(_.map(without, function (fun) { return fun(t); }));
                        });
   return function () {
     _.each(types, function (t) {
