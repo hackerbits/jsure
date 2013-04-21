@@ -5,6 +5,22 @@ var toString = function (x) {
   return Object.prototype.toString.call(x);
 };
 
+// Miscellaneous
+// -------------
+
+exports.validate = function (coll, x) {
+  coll = Array.isArray(coll) ? coll : [coll];
+  if (coll.some(Array.isArray)) {
+    return coll.reduce(function (p, c) {
+      return p.concat(p.some(exports.truthy) ? p : exports.validate(c, x));
+    }, []).some(exports.truthy);
+  } else {
+    return coll.reduce(function (p, c) {
+      return p.concat(p.some(exports.falsey) ? p : c(x));
+    }, []).every(exports.truthy);
+  }
+};
+
 exports.boolean = exports.bool = function (x) {
   return x === true || x === false || toString(x) === "[object Boolean]";
 };
