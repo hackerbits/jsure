@@ -6,7 +6,7 @@
   },
   "name": "jsure",
   "scripts": {
-    "test": "mocha --ui tdd"
+    "test": "mocha --reporter spec --ui tdd"
   },
   "version": "0.1.0-SNAPSHOT"
 }
