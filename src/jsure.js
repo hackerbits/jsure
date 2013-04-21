@@ -1,11 +1,16 @@
-var toString = Object.prototype.toString;
+// Utilities
+// ---------
+
+var toString = function (x) {
+  return Object.prototype.toString.call(x);
+};
 
 exports.boolean = exports.bool = function (x) {
-  return x === true || x === false || toString.call(x) === "[object Boolean]";
+  return x === true || x === false || toString(x) === "[object Boolean]";
 };
 
 exports.function = exports.fun = function (x) {
-  return toString.call(x) === "[object Function]";
+  return toString(x) === "[object Function]";
 };
 
 exports.nil = function (x) {
@@ -13,9 +18,9 @@ exports.nil = function (x) {
 };
 
 exports.number = function (x) {
-  return toString.call(x) === "[object Number]";
+  return toString(x) === "[object Number]";
 };
 
 exports.string = function (x) {
-  return toString.call(x) === "[object String]";
+  return toString(x) === "[object String]";
 };
