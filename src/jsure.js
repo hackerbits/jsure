@@ -21,6 +21,15 @@ exports.validate = function (coll, x) {
   }
 };
 
+// Predicates
+// ----------
+
+exports.array = function (preds) {
+  return function (x) {
+    return Array.isArray(x);
+  };
+};
+
 exports.boolean = exports.bool = function (x) {
   return x === true || x === false || toString(x) === "[object Boolean]";
 };

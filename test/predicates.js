@@ -37,6 +37,14 @@ var falsehood = function (fun /* , without */) {
 
 suite("predicates", function () {
   suite("types", function () {
+    suite("array", function () {
+      test("false", function () {
+        falsehood(j.array(), _.isArray)();
+      });
+      test("true", function () {
+        truth(j.array(), [], [1, 2, 3])();
+      });
+    });
     suite("boolean", function () {
       test("aliases", function () {
         assert.equal(j.boolean, j.bool);
