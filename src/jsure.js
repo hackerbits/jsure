@@ -9,6 +9,15 @@ exports.boolean = exports.bool = function (x) {
   return x === true || x === false || toString(x) === "[object Boolean]";
 };
 
+// TODO: Make polymorphic.
+exports.empty = function (x) {
+  return x.length === 0;
+};
+
+exports.falsey = function (x) {
+  return x == null || x === false;
+};
+
 exports.function = exports.fun = function (x) {
   return toString(x) === "[object Function]";
 };
@@ -23,4 +32,8 @@ exports.number = function (x) {
 
 exports.string = function (x) {
   return toString(x) === "[object String]";
+};
+
+exports.truthy = function (x) {
+  return !exports.falsey(x);
 };

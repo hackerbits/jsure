@@ -44,6 +44,14 @@ suite("predicates", function () {
       test("false", falsehood(j.boolean, _.isBoolean));
       test("true", truth(j.boolean, false, true));
     });
+    suite("falsey", function () {
+      test("false", function () {
+        assert.strictEqual(j.falsey(NaN), false);
+        assert.strictEqual(j.falsey(0), false);
+        assert.strictEqual(j.falsey(""), false);
+      });
+      test("true", truth(j.falsey, false, null, undefined));
+    });
     suite("function", function () {
       test("aliases", function () {
         assert.equal(j.function, j.fun);
@@ -62,6 +70,14 @@ suite("predicates", function () {
     suite("string", function () {
       test("false", falsehood(j.string, _.isString));
       test("true", truth(j.string, "", "foo"));
+    });
+    suite("truthy", function () {
+      test("false", function () {
+        assert.strictEqual(j.truthy(false), false);
+        assert.strictEqual(j.truthy(null), false);
+        assert.strictEqual(j.truthy(undefined), false);
+      });
+      test("true", truth(j.truthy, NaN, 0, ""));
     });
   });
 });
