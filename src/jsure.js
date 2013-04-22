@@ -1,6 +1,13 @@
 // Utilities
 // ---------
 
+var partial = function (fun /* , args */) {
+  var args = slice(arguments, 1);
+  return function() {
+    return fun.apply(this, args.concat(slice(arguments)));
+  };
+};
+
 var slice = function (x, start, stop) {
   return Array.prototype.slice.call(x, start, stop);
 };
