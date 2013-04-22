@@ -26,8 +26,16 @@ suite("validate", function () {
     });
   });
   suite("disjunction", function () {
+    test("false", function () {
+      assert.strictEqual(j.validate([[f], [f]]), false);
+      assert.strictEqual(j.validate([[f], f]), false);
+      assert.strictEqual(j.validate([f, [f]]), false);
+    });
     test("true", function () {
       assert.strictEqual(j.validate([[f], [t]]), true);
+      assert.strictEqual(j.validate([[t], [f]]), true);
+      assert.strictEqual(j.validate([[t], f]), true);
+      assert.strictEqual(j.validate([f, [t]]), true);
     });
   });
   suite("short-circuit evaluation", function () {
@@ -36,6 +44,7 @@ suite("validate", function () {
     });
     test("disjunction", function () {
       j.validate([[t], [function () { throw new Error(); }]]);
+      j.validate([[[f], [t]], [function () { throw new Error(); }]]);
     });
   });
 });
