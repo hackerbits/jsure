@@ -1,6 +1,10 @@
 // Utilities
 // ---------
 
+var slice = function (x, start, stop) {
+  return Array.prototype.slice.call(x, start, stop);
+};
+
 var toString = function (x) {
   return Object.prototype.toString.call(x);
 };
