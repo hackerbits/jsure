@@ -7,6 +7,10 @@ var t = L.always(true);
 var f = L.always(false);
 
 suite("validate", function () {
+  test("without predicates", function () {
+    assert.strictEqual(j.validate(undefined, false), true);
+    assert.strictEqual(j.validate(undefined, true), true);
+  });
   suite("conjunction", function () {
     test("false", function () {
       assert.strictEqual(j.validate(f), false);

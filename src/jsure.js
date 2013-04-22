@@ -9,6 +9,7 @@ var toString = function (x) {
 // -------------
 
 exports.validate = function (coll, x) {
+  coll = exports.nil(coll) ? [] : coll;
   coll = Array.isArray(coll) ? coll : [coll];
   if (coll.some(Array.isArray)) {
     return coll.reduce(function (p, c) {
