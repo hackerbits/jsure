@@ -24,8 +24,12 @@ suite("validate", function () {
     assert.strictEqual(j.validate([[[t]]]), true);
     assert.strictEqual(j.validate([[f], [t]]), true);
   });
-  test("logic", function () {
-    j.validate([f, function () { throw new Error("logic"); }]);
-    j.validate([[t], [function () { throw new Error("logic"); }]]);
+  suite("short-circuit evaluation", function () {
+    test("conjunction", function () {
+      j.validate([f, function () { throw new Error(); }]);
+    });
+    test("disjunction", function () {
+      j.validate([[t], [function () { throw new Error(); }]]);
+    });
   });
 });
