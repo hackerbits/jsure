@@ -38,7 +38,8 @@ exports.validate = function (coll, x) {
 
 exports.array = function (preds) {
   return function (x) {
-    return Array.isArray(x);
+    return Array.isArray(x) &&
+           x.map(partial(exports.validate, preds)).every(exports.truthy);
   };
 };
 

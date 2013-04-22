@@ -40,9 +40,13 @@ suite("predicates", function () {
     suite("array", function () {
       test("false", function () {
         falsehood(j.array(), _.isArray)();
+        assert.strictEqual(j.array([_.identity])([false]), false);
+        assert.strictEqual(j.array([_.identity])([false, true]), false);
       });
       test("true", function () {
         truth(j.array(), [], [1, 2, 3])();
+        assert.strictEqual(j.array([_.identity])([true]), true);
+        assert.strictEqual(j.array([_.identity])([true, true]), true);
       });
     });
     suite("boolean", function () {
