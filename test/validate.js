@@ -1,10 +1,11 @@
 var assert = require("assert"),
+    _ = require("underscore"),
     L = require("lemonad"),
+    h = require("./helper"),
     j = require("../src/jsure");
 
-var t = L.always(true);
-
-var f = L.always(false);
+var t = h.t,
+    f = h.f;
 
 suite("validate", function () {
   test("without predicates", function () {
@@ -45,11 +46,11 @@ suite("validate", function () {
   });
   suite("short-circuit evaluation", function () {
     test("conjunction", function () {
-      j.validate([f, function () { throw new Error(); }]);
+      j.validate([f, _.partial(h.fail)]);
     });
     test("disjunction", function () {
-      j.validate([[t], [function () { throw new Error(); }]]);
-      j.validate([[[f], [t]], [function () { throw new Error(); }]]);
+      j.validate([[t], [_.partial(h.fail)]]);
+      j.validate([[[f], [t]], [_.partial(h.fail)]]);
     });
   });
 });
