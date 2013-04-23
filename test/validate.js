@@ -8,8 +8,10 @@ var f = L.always(false);
 
 suite("validate", function () {
   test("without predicates", function () {
+    assert.strictEqual(j.validate(undefined), true);
     assert.strictEqual(j.validate(undefined, false), true);
-    assert.strictEqual(j.validate(undefined, true), true);
+    assert.strictEqual(j.validate([]), true);
+    assert.strictEqual(j.validate([[], []]), true);
   });
   suite("conjunction", function () {
     test("false", function () {
@@ -22,7 +24,6 @@ suite("validate", function () {
     });
     test("true", function () {
       assert.strictEqual(j.validate(t), true);
-      assert.strictEqual(j.validate([]), true);
       assert.strictEqual(j.validate([t]), true);
       assert.strictEqual(j.validate([[t]]), true);
       assert.strictEqual(j.validate([[[t]]]), true);
