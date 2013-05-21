@@ -69,6 +69,10 @@ exports.number = function (x) {
   return toString(x) === "[object Number]";
 };
 
+exports.object = function (x) {
+  return x === Object(x);
+};
+
 exports.string = function (x) {
   return toString(x) === "[object String]";
 };

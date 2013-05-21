@@ -85,6 +85,9 @@ suite("predicates", function () {
       test("false", falsehood(j.number, _.isNumber));
       test("true", truth(j.number, 0, 0.5, 1));
     });
+    suite("object", function () {
+      test("false", falsehood(j.object, _.isObject));
+    });
     suite("string", function () {
       test("false", falsehood(j.string, _.isString));
       test("true", truth(j.string, "", "foo"));
