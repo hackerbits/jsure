@@ -36,10 +36,11 @@ exports.validate = function (coll, x) {
 // Predicates
 // ----------
 
-exports.array = function (preds) {
+exports.array = function (itemPreds, arrayPreds) {
   return function (x) {
     return Array.isArray(x) &&
-           x.map(partial(exports.validate, preds)).every(exports.truthy);
+           exports.validate(arrayPreds, x) &&
+           x.map(partial(exports.validate, itemPreds)).every(exports.truthy);
   };
 };
 

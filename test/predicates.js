@@ -1,7 +1,11 @@
 var assert = require("assert"),
     _ = require("underscore"),
     L = require("lemonad"),
+    h = require("./helper"),
     j = require("../src/jsure");
+
+var t = h.t,
+    f = h.f;
 
 var truth = function (fun /* , xs */) {
   var xs = _.rest(arguments);
@@ -42,11 +46,13 @@ suite("predicates", function () {
         falsehood(j.array(), _.isArray)();
         assert.strictEqual(j.array([_.identity])([false]), false);
         assert.strictEqual(j.array([_.identity])([false, true]), false);
+        assert.strictEqual(j.array(t, f)([]), false);
       });
       test("true", function () {
         truth(j.array(), [], [1, 2, 3])();
         assert.strictEqual(j.array([_.identity])([true]), true);
         assert.strictEqual(j.array([_.identity])([true, true]), true);
+        assert.strictEqual(j.array(t, t)([]), true);
       });
     });
     suite("boolean", function () {
